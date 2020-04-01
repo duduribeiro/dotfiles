@@ -39,3 +39,7 @@
 	whitespace = red reverse
 [diff-so-fancy]
 	markEmptyLines = false
+[commit]
+	gpgsign = true
+[gpg]
+	program = gpg
