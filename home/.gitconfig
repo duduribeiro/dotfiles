@@ -1,0 +1,41 @@
+[user]
+	name = Carlos Ribeiro
+	email = mail@carlosribeiro.me
+	signingkey = E374B70AF2B7D287
+[core]
+	excludesfile = /Users/cadu/.gitignore_global
+	pager = diff-so-fancy | less --tabs=4 -RFX
+[alias]
+  # a consisely formatted log
+  h = log --graph --pretty=format:'%Cred%h%Creset%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+
+  # short status
+  s = status -sb
+
+  # Saving typing
+  c = commit
+  d = diff
+  co = checkout
+  dc = diff --cached
+  rh = reset --hard
+  am = commit --amend
+  cp = cherry-pick
+
+  # recent branches
+  recent = for-each-ref --sort=-committerdate --count=10 --format='%(refname:short)' refs/heads/”
+[color]
+	ui = true
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[color "diff"]
+	meta = 11
+	frag = magenta bold
+	commit = yellow bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+[diff-so-fancy]
+	markEmptyLines = false
