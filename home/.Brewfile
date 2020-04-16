@@ -23,7 +23,9 @@ brew 'kubernetes-cli'
 brew 'minikube'
 brew 'neovim'
 brew 'overmind'
+brew 'pinentry-mac'
 brew 'terraform'
+brew 'watch'
 
 # = Binaries
 
@@ -42,3 +44,4 @@ brew 'memcached'
 brew 'postgresql'
 brew 'redis'
 brew 'sqlite'
+cask 'telegram'
