@@ -1,6 +1,6 @@
 [user]
 	name = Carlos Ribeiro
-	email = mail@carlosribeiro.me
+	email = mail@cadu.dev
 	signingkey = E374B70AF2B7D287
 [core]
 	excludesfile = /Users/cadu/.gitignore_global
@@ -42,4 +42,4 @@
 [commit]
 	gpgsign = true
 [gpg]
-	program = gpg
+	program = /usr/local/bin/gpg
