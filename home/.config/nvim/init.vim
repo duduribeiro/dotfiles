@@ -24,6 +24,7 @@ Plug 'junegunn/fzf.vim'
 
 " Handle Ctags
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'majutsushi/tagbar'
 
 " Modern matchit replacement
 Plug 'andymass/vim-matchup'
@@ -71,6 +72,16 @@ Plug 'janko/vim-test'
 Plug 'benmills/vimux'
 Plug 'christoomey/vim-tmux-navigator'
 
+" Languages
+Plug 'vim-ruby/vim-ruby'
+Plug 'tpope/vim-rails'
+
+" Snippets
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'garbas/vim-snipmate'
+Plug 'honza/vim-snippets'
+
 call plug#end()
 
 " ==========
@@ -85,7 +96,9 @@ let g:loaded_matchit = 1 " Disable matchit in order to use vim-matchup
 
 let g:python3_host_prog = '/usr/local/bin/python3' " Set python binary location
 
+set termguicolors
 colorscheme OceanicNext " Set colorscheme
+set background=dark
 
 " Prevent a user from using arrow keys
 noremap <Up> <NOP>
