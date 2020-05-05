@@ -5,6 +5,7 @@ call plug#begin('~/.vim/plugged')
 
 " Collection of color schemes
 Plug 'rafi/awesome-vim-colorschemes'
+Plug 'arcticicestudio/nord-vim'
 
 " Provide additional text objects
 Plug 'wellle/targets.vim'
@@ -94,10 +95,18 @@ filetype plugin indent on
 let mapleader = " " " Set space as leader key
 let g:loaded_matchit = 1 " Disable matchit in order to use vim-matchup
 
-let g:python3_host_prog = '/usr/local/bin/python3' " Set python binary location
+let g:python_host_prog = '/usr/bin/python' " Set python binary location
+let g:python3_host_prog = '/usr/bin/python3' " Set python binary location
 
+if exists('$TMUX')
+  " Colors in tmux
+  let &t_8f = "<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "<Esc>[48;2;%lu;%lu;%lum"
+endif
+
+colorscheme nord " Set colorscheme
+set t_Co=256
 set termguicolors
-colorscheme OceanicNext " Set colorscheme
 set background=dark
 
 " Prevent a user from using arrow keys
@@ -185,3 +194,13 @@ nmap <silent> t<C-l> :TestLast<CR>
 nmap <silent> t<C-g> :TestVisit<CR>
 
 let test#strategy = "vimux" " use vimux as strategy to send test to tmux
+
+" ==========
+" vim-gutentags
+" ==========
+let g:gutentags_project_root = ['.git', '.svn', '.root', '.hg', '.project']
+" let g:gutentags_ctags_tagfile = '.tags'
+" let s:vim_tags = expand('~/.cache/tags')
+" let g:gutentags_cache_dir = s:vim_tags
+" let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q', '--c++-kinds=+px', '--c-kinds=+px']
+" let g:gutentags_trace = 1
