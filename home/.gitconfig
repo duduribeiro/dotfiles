@@ -1,7 +1,7 @@
 [user]
 	name = Carlos Ribeiro
 	email = mail@cadu.dev
-	signingkey = E374B70AF2B7D287
+	signingkey = B4AA080E1479FA6B
 [core]
 	excludesfile = /Users/cadu/.gitignore_global
 	pager = diff-so-fancy | less --tabs=4 -RFX
@@ -42,4 +42,6 @@
 [commit]
 	gpgsign = true
 [gpg]
-	program = /usr/local/bin/gpg
+	program = gpg
+[url "git@github.com:"]
+	insteadOf = https://github.com/
