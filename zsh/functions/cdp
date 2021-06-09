@@ -1,0 +1,8 @@
+cdp() {
+  res=$(find *$1* -maxdepth 1 -type d | head -1) 2> /dev/null
+  if [ -z "$res" ]; then
+    echo "folder not found"
+  else
+    cd $res
+  fi
+}

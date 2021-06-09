@@ -1,0 +1,12 @@
+[user]
+  name = Cadu Ribeiro
+  email = mail@cadu.dev
+[github]
+  user = duduribeiro
+[push]
+  default = simple
+[credential]
+  helper = osxkeychain
+
+[alias]
+	make-patch = "!bash -c \"git add .;git commit -m uncommited; git format-patch HEAD~1; git reset HEAD~1\""
