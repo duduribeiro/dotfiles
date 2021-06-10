@@ -1,6 +1,8 @@
 [user]
   name = Cadu Ribeiro
   email = mail@cadu.dev
+[core]
+  excludesfile = ~/.gitignore_global
 [github]
   user = duduribeiro
 [push]
