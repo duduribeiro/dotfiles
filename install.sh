@@ -1,5 +1,7 @@
 #!/bin/bash
 
+exit
+
 if [ -L "$0" ]
 then
   SCRIPTSETUP="$(readlink "$0")"
