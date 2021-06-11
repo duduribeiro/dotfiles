@@ -19,8 +19,13 @@ echo 'Installing Plug'
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
-# echo 'Installing oh-my-zsh'
-# #sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+if [ -n "$CODESPACES" ]
+then
+  rm -rf ~/.oh-my-zsh
+fi
+
+echo 'Installing oh-my-zsh'
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
 if [ $MACOS ]
 then
