@@ -1,10 +1,5 @@
 #!/bin/sh
 
-set -euo pipefail
-
-exit
-
-
 SCRIPT_NAME=${1:-"install.sh"}
 export NONINTERACTIVE=1
 # Send all our -x output to this file for later debugging
@@ -12,10 +7,9 @@ LOG_DIR="$HOME/install.sh.logs"
 mkdir -p "${LOG_DIR}"
 exec 1>"${LOG_DIR}/stdout"
 exec 2>"${LOG_DIR}/stderr"
-exec 19>"${LOG_DIR}/trace"
-BASH_XTRACEFD=19
 
-set -x
+set -xe
+export NONINTERACTIVE=1
 
 echo "${SCRIPT_NAME} start: $(date)"
 
@@ -30,6 +24,13 @@ then
 
 	echo 'Running brew bundle'
 	brew bundle
+else
+	if ! grep -q "root.*/bin/zsh" /etc/passwd
+	then
+	  chsh -s /bin/zsh root
+	fi
+
+	apt-get install -y ripgrep rcm
 fi
 
 echo 'Installing Plug'
