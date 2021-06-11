@@ -155,19 +155,12 @@ if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
         print -P "%F{160}▓▒░ The clone has failed.%f%b"
 fi
 
-source "$HOME/.zinit/bin/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
+source "$HOME/.local/share/miniplug.zsh"
 
-# Load a few important annexes, without Turbo
-# (this is currently required for annexes)
-zinit light-mode for \
-    zinit-zsh/z-a-rust \
-    zinit-zsh/z-a-as-monitor \
-    zinit-zsh/z-a-patch-dl \
-    zinit-zsh/z-a-bin-gem-node \
-    zdharma/fast-syntax-highlighting \
-    zsh-users/zsh-autosuggestions \
-    zsh-users/zsh-completions
+# Define plugins
+miniplug plugin 'zdharma/fast-syntax-highlighting'
+miniplug plugin 'zsh-users/zsh-autosuggestions'
+miniplug plugin 'zsh-users/zsh-completions'
 
-### End of Zinit's installer chunk
+# Source plugins
+miniplug load

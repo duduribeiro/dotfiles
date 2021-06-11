@@ -40,8 +40,14 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 echo 'Installing oh-my-zsh'
 #sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
-echo 'Installing zinit'
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"
+echo 'Installing miniplug'
+
+curl \
+  -sL --create-dirs \
+  https://git.sr.ht/~yerinalexey/miniplug/blob/master/miniplug.zsh \
+  -o $HOME/.local/share/miniplug.zsh
 
 echo 'Syncing dotfiles'
 env RCRC=$HOME/dotfiles/rcrc rcup
+
+miniplug install
