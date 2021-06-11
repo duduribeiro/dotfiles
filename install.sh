@@ -1,17 +1,4 @@
-#!/bin/sh
-
-SCRIPT_NAME=${1:-"setup"}
-export NONINTERACTIVE=1
-# Send all our -x output to this file for later debugging
-LOG_DIR="$HOME/setup.logs"
-mkdir -p "${LOG_DIR}"
-exec 1>"${LOG_DIR}/stdout"
-exec 2>"${LOG_DIR}/stderr"
-
-set -xe
-export NONINTERACTIVE=1
-
-echo "${SCRIPT_NAME} start: $(date)"
+#!/bin/bash
 
 if [ -L "$0" ]
 then
@@ -20,7 +7,6 @@ else
   SCRIPTSETUP="$0"
 fi
 
-echo $SCRIPTSETUP
 DOTFILESDIRREL=$(dirname $SCRIPTSETUP)
 cd $DOTFILESDIRREL/..
 DOTFILESDIR=$(pwd -P)
