@@ -8,12 +8,19 @@ else
 fi
 
 DOTFILESDIRREL=$(dirname $SCRIPTSETUP)
-cd $DOTFILESDIRREL/..
+cd $DOTFILESDIRREL
 DOTFILESDIR=$(pwd -P)
 
 [ $(uname -s) = "Darwin" ] && export MACOS=1 && export UNIX=1
 [ $(uname -s) = "Linux" ] && export LINUX=1 && export UNIX=1
 
+
+echo 'Installing Plug'
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
+# echo 'Installing oh-my-zsh'
+# #sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
 if [ $MACOS ]
 then
@@ -87,14 +94,6 @@ if [ -n "$CODESPACES" ]
 then
   chmod 700 /workspaces
 fi
-
-
-echo 'Installing Plug'
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-
-# echo 'Installing oh-my-zsh'
-# #sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
 echo 'Installing miniplug'
 
