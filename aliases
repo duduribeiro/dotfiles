@@ -9,3 +9,5 @@ alias dotcom="cd ~/github/github"
 
 # Bundler
 alias b="bundle"
+
+alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
