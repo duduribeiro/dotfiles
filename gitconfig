@@ -14,3 +14,9 @@
 
 [alias]
 	make-patch = "!bash -c \"git add .;git commit -m uncommited; git format-patch HEAD~1; git reset HEAD~1\""
+[pull]
+	rebase = true
+[fetch]
+	prune = true
+[diff]
+	colorMoved = zebra
