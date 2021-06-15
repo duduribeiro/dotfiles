@@ -144,7 +144,7 @@ _load_settings "$HOME/.zsh/configs"
 [[ -f ~/.aliases ]] && source ~/.aliases
 
 # path
-export PATH=$HOME/.bin:/usr/local/opt/libpq/bin:$PATH
+export PATH=$HOME/.bin:/usr/local/opt/libpq/bin:$HOME/.composer/vendor/bin:$PATH
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
