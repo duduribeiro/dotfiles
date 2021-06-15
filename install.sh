@@ -27,6 +27,8 @@ fi
 echo 'Installing oh-my-zsh'
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
+mkdir -p ~/.ssh
+
 if [ $MACOS ]
 then
   VSCODE="$HOME/Library/Application Support/Code/User"
@@ -64,11 +66,13 @@ for DOTFILE in *; do
   # Don't mess with Codespaces' default GPG/SSH setup.
   if [ -n "$CODESPACES" ]
   then
-    echo $DOTFILE | egrep -q '^(gnupg|ssh)/' && continue
+    echo $DOTFILE | egrep -q '^(gnupg|ssh|sshconfig)/' && continue
   fi
 
   # Don't try to install documentation/script files
   echo $DOTFILE | egrep -q '(^script/$|\.txt$|\.md$)' && continue
+
+  echo $DOTFILE | egrep -q 'sshconfig' && ln -sv "$DIRFILE" "$HOME/.ssh/config"  && continue
 
   # Fixup VSCode settings path
   echo $DOTFILE | grep -q 'vscode-settings' &&

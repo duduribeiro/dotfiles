@@ -1,0 +1,5 @@
+Host codespace
+  User root
+  Hostname localhost
+  Port 2222
+  NoHostAuthenticationForLocalhost yes
