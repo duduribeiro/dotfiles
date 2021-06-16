@@ -146,6 +146,9 @@ _load_settings "$HOME/.zsh/configs"
 # path
 export PATH=$HOME/.bin:/usr/local/opt/libpq/bin:$HOME/.composer/vendor/bin:$PATH
 
+# set the default editor to nvim
+export EDITOR=nvim
+
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
     print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"

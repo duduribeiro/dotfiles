@@ -53,7 +53,20 @@ then
     chsh -s /bin/zsh root
   fi
 
-  apt-get install -y ripgrep rcm
+  apt-get install -y ripgrep rcm software-properties-common curl git
+
+  add-apt-repository ppa:neovim-ppa/stable -y
+
+  apt-get update -y
+
+  apt-get install neovim
+
+  echo 'installing asdf'
+
+  git clone https://github.com/asdf-vm/asdf.git ~/.asdf
+
+  (cd ~/.asdf && git checkout "$(git describe --abbrev=0 --tags)")
+
 fi
 
 echo 'Syncing dotfiles'
