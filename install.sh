@@ -53,13 +53,14 @@ then
     chsh -s /bin/zsh root
   fi
 
-  apt-get install -y ripgrep rcm software-properties-common curl git
-
-  add-apt-repository ppa:neovim-ppa/stable -y
-
   apt-get update -y
 
-  apt-get install neovim
+  apt-get install -y ripgrep rcm software-properties-common curl git libfuse2
+
+  # Install neovim
+
+  curl -L -o $HOME/bin/nvim https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
+  chmod a+x $HOME/bin/nvim
 
   echo 'installing asdf'
 
