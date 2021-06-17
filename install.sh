@@ -70,6 +70,10 @@ then
 
 fi
 
+echo 'Installing tmux plugin manager'
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+~/.tmux/plugins/tpm/scripts/install_plugins.sh
+
 echo 'Syncing dotfiles'
 
 for DOTFILE in *; do
