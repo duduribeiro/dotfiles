@@ -42,6 +42,8 @@ then
 
 	echo 'Running brew bundle'
 	brew bundle
+
+  ln -s /usr/local/opt/emacs-mac/Emacs.app /Applications/Emacs.app
 elif [ $LINUX ]
 then
   VSCODE="$HOME/.config/Code/User"
@@ -55,12 +57,12 @@ then
 
   apt-get update -y
 
-  apt-get install -y ripgrep rcm software-properties-common curl git libfuse2
+  apt-get install -y ripgrep rcm software-properties-common curl git libfuse2 fd-find libsm6 libxext6
 
   # Install neovim
 
-  curl -L -o $HOME/bin/nvim https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
-  chmod a+x $HOME/bin/nvim
+  curl -L -o /usr/bin/nvim https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
+  chmod a+x /usr/bin/nvim
 
   echo 'installing asdf'
 
