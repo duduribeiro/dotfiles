@@ -61,7 +61,7 @@ then
 
   # Install neovim
 
-  curl -L -o /usr/bin/nvim https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
+  curl -L -o /usr/bin/nvim https://github.com/neovim/neovim/releases/download/v0.5.1/nvim.appimage
   chmod a+x /usr/bin/nvim
 
   echo 'installing asdf'
