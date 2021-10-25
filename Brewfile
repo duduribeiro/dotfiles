@@ -4,6 +4,7 @@ tap "railwaycat/emacsmacport"
 brew 'luajit', args: ['HEAD']
 brew 'neovim', args: ['HEAD']
 
+cask 'alacritty'
 brew 'asdf'
 cask 'atom'
 brew 'bat'
@@ -23,10 +24,11 @@ brew 'gtop'
 brew 'gping'
 brew 'htop'
 brew 'httpie'
+cask 'itsycal'
 brew 'jq'
 #cask 'rectangle'
 brew 'libpq'
-brew 'muzzle'
+cask 'muzzle'
 brew 'navi'
 brew 'procs'
 cask 'proxyman'
