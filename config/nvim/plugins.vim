@@ -1,5 +1,8 @@
 call plug#begin('~/.vim/plugged')
 
+  Plug 'jeffkreeftmeijer/vim-dim'
+  Plug 'dracula/vim'
+
 " nvim 0.5 features
   Plug 'hrsh7th/nvim-compe'
   " dependencies
@@ -24,7 +27,12 @@ Plug 'benmills/vimux'
 " Git
 Plug 'tpope/vim-fugitive'
 
+" GitHub
+Plug 'pwntester/octo.nvim'
+
 Plug 'ThePrimeagen/vim-be-good'
+
+Plug 'kyazdani42/nvim-web-devicons'
 
 call plug#end()
 
