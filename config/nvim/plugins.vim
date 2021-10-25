@@ -2,6 +2,7 @@ call plug#begin('~/.vim/plugged')
 
   Plug 'jeffkreeftmeijer/vim-dim'
   Plug 'dracula/vim'
+  Plug 'romgrk/doom-one.vim'
 
 " nvim 0.5 features
   Plug 'hrsh7th/nvim-compe'
@@ -36,3 +37,4 @@ Plug 'kyazdani42/nvim-web-devicons'
 
 call plug#end()
 
+colorscheme doom-one

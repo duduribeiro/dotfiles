@@ -12,3 +12,5 @@ for file in s:config_files
     exec "so ".s:config_path.file
   endif
 endfor
+
+let g:doom_one_terminal_colors = v:true

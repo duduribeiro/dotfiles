@@ -16,6 +16,8 @@ set softtabstop=2
 set shiftwidth=2     " the number of spaces to be used when using shifting `>` `<`
 set textwidth=120    " Vim will auto-break long lines if it's more than 80 chars
 set autoindent       " copy the indent from the previous line when pressing Enter
+set termguicolors 
+
 
 syntax on
 filetype on
