@@ -3,7 +3,7 @@ let mapleader = ","
 
 set number             " shows the line number
 set textwidth=120      " limit line to 120 chars
-set clipboard^=unnamed " Use system's clipboard in the system register 
+set clipboard^=unnamed " Use system's clipboard in the system register
 set ignorecase
 set smartcase
 set splitright
@@ -16,7 +16,9 @@ set softtabstop=2
 set shiftwidth=2     " the number of spaces to be used when using shifting `>` `<`
 set textwidth=120    " Vim will auto-break long lines if it's more than 80 chars
 set autoindent       " copy the indent from the previous line when pressing Enter
-set termguicolors 
+
+set termguicolors
+set list listchars=tab:»·,trail:·,nbsp:· " Display extra whitespace
 
 
 syntax on
@@ -45,3 +47,5 @@ augroup numbertoggle
   autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
   autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
 augroup END
+
+au FileType gitcommit setlocal tw=72 " automatically wrap on 72 col for git commit message

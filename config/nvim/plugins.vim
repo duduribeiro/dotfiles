@@ -35,6 +35,8 @@ Plug 'ThePrimeagen/vim-be-good'
 
 Plug 'kyazdani42/nvim-web-devicons'
 
+Plug 'nestorsalceda/vim-strip-trailing-whitespaces'
+
 call plug#end()
 
 colorscheme doom-one
