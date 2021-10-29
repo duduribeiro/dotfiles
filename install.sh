@@ -57,7 +57,7 @@ then
 
   apt-get update -y
 
-  apt-get install -y ripgrep rcm software-properties-common curl git libfuse2 fd-find libsm6 libxext6
+  xargs apt-get install -y <debian_packages.txt
 
   # Install neovim
 

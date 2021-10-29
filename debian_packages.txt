@@ -1,0 +1,9 @@
+curl
+fd-find
+git
+libfuse2
+libsm6
+libxext6
+rcm
+ripgrep
+software-properties-common
