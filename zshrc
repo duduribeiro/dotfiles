@@ -150,20 +150,26 @@ export PATH=$HOME/.bin:/usr/local/opt/libpq/bin:$HOME/.composer/vendor/bin:$PATH
 export EDITOR=nvim
 
 ### Added by Zinit's installer
-if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
-    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
-    command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
-    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
-        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
-        print -P "%F{160}▓▒░ The clone has failed.%f%b"
-fi
+#if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
+#    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
+#    command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
+#    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
+#        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
+#        print -P "%F{160}▓▒░ The clone has failed.%f%b"
+#fi
 
 source "$HOME/.local/share/miniplug.zsh"
 
 # Define plugins
-miniplug plugin 'zdharma/fast-syntax-highlighting'
+miniplug plugin 'zsh-users/zsh-syntax-highlighting'
 miniplug plugin 'zsh-users/zsh-autosuggestions'
 miniplug plugin 'zsh-users/zsh-completions'
 
 # Source plugins
 miniplug load
+
+# Added by GDK bootstrap
+export PKG_CONFIG_PATH="/usr/local/opt/icu4c/lib/pkgconfig:${PKG_CONFIG_PATH}"
+
+# Added by GDK bootstrap
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/usr/local/opt/openssl@1.1 --with-readline-dir=/usr/local/opt/readline"
