@@ -1,15 +1,10 @@
-# Unix
 alias ll="ls -al"
 alias ln="ln -v"
 alias mkdir="mkdir -p"
-alias e="$EDITOR"
-alias v="$VISUAL"
-
+#alias e="$EDITOR"
+#alias v="$VISUAL"
 alias dotcom="cd ~/github/github"
-
-# Bundler
 alias b="bundle"
-
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
-
 alias vim="nvim"
+alias mux="tmuxinator"

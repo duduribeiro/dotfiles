@@ -19,14 +19,6 @@ echo 'Installing Plug'
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
-if [ -n "$CODESPACES" ]
-then
-  rm -rf ~/.oh-my-zsh
-fi
-
-echo 'Installing oh-my-zsh'
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-
 mkdir -p ~/.ssh
 
 if [ $MACOS ]
@@ -50,11 +42,9 @@ then
 
   echo "Setting up your Linux / Codespaces  👨‍💻"
 
-  if ! grep -q "root.*/bin/zsh" /etc/passwd
-  then
-    chsh -s /bin/zsh root
-  fi
+  chsh -s /usr/bin/fish
 
+  apt-add-repository ppa:fish-shell/release-3
   apt-get update -y
 
   xargs apt-get install -y <debian_packages.txt
@@ -124,15 +114,9 @@ then
   chmod 700 /workspaces
 fi
 
-echo 'Installing miniplug'
+echo 'Installing fisher'
 
-curl \
-  -sL --create-dirs \
-  https://git.sr.ht/~yerinalexey/miniplug/blob/master/miniplug.zsh \
-  -o $HOME/.local/share/miniplug.zsh
+[[ -z $(command -v fisher) ]] && curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
 
-source $HOME/.local/share/miniplug.zsh
-
-miniplug install
-
-
+fisher list | grep dracula/fish || fisher install dracula/fish
+fisher list | grep jethrokuan/fzf || fisher install jethrokuan/fzf

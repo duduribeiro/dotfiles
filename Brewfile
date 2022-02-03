@@ -1,3 +1,4 @@
+tap "homebrew/cask-fonts"
 tap "railwaycat/emacsmacport"
 
 # neovim
@@ -18,6 +19,8 @@ brew 'dust'
 brew 'emacs-mac', args: ['with-modules']
 brew 'exa'
 brew 'fd'
+brew "fish"
+cask "font-hack-nerd-font"
 brew 'git'
 brew 'glances'
 brew 'gtop'
@@ -34,5 +37,6 @@ brew 'procs'
 cask 'proxyman'
 brew 'ripgrep'
 brew 'the_silver_searcher'
+brew 'tldr'
 brew 'tmux'
 brew 'wget'
