@@ -44,7 +44,7 @@ then
 
   chsh -s /usr/bin/fish
 
-  apt-add-repository ppa:fish-shell/release-3
+  apt-add-repository ppa:fish-shell/release-3 -y
   apt-get update -y
 
   xargs apt-get install -y <debian_packages.txt
