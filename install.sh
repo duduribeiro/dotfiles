@@ -114,9 +114,14 @@ then
   chmod 700 /workspaces
 fi
 
-echo 'Installing fisher'
 
-[[ -z $(command -v fisher) ]] && curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
+if ! command -v fisher &> /dev/null
+then
+  echo 'Installing fisher'
+  fish -c 'curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher'
+fi
 
-fisher list | grep dracula/fish || fisher install dracula/fish
-fisher list | grep jethrokuan/fzf || fisher install jethrokuan/fzf
+for package in $(cat fisher_packages.txt)
+do
+  fish -c "fisher list | grep $package || fisher install $package"
+done
