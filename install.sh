@@ -42,12 +42,9 @@ then
 
   echo "Setting up your Linux / Codespaces  👨‍💻"
 
-  chsh -s /usr/bin/fish
+  chsh -s /usr/bin/zsh
 
-  apt-add-repository ppa:fish-shell/release-3 -y
   apt-get update -y
-
-  xargs apt-get install -y <debian_packages.txt
 
   # Install neovim
 
@@ -113,15 +110,3 @@ if [ -n "$CODESPACES" ]
 then
   chmod 700 /workspaces
 fi
-
-
-if ! command -v fisher &> /dev/null
-then
-  echo 'Installing fisher'
-  fish -c 'curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher'
-fi
-
-for package in $(cat fisher_packages.txt)
-do
-  fish -c "fisher list | grep $package || fisher install $package"
-done
