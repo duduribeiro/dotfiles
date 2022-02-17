@@ -1,6 +1,7 @@
 [user]
   name = Cadu Ribeiro
   email = mail@cadu.dev
+  signingkey = 82F0925118FD930B
 [core]
   excludesfile = ~/.gitignore_global
 [github]
