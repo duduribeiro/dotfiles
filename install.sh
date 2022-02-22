@@ -110,3 +110,8 @@ if [ -n "$CODESPACES" ]
 then
   chmod 700 /workspaces
 fi
+
+if [ -n $CODESPACES ]; then
+  # git hooks magic
+  [ -f /workspaces/github/script/git-hooks/pre-push ] && ln -s /workspaces/github/script/git-hooks/pre-push /workspaces/github/.git/hooks/pre-push
+fi
