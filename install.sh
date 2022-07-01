@@ -42,8 +42,6 @@ then
 
   echo "Setting up your Linux / Codespaces  👨‍💻"
 
-  chsh -s /usr/bin/zsh
-
   apt-get update -y
 
   # Install neovim
