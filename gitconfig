@@ -8,6 +8,7 @@
   user = duduribeiro
 [push]
   default = simple
+	autoSetupRemote = true
 [credential]
   helper = osxkeychain
 [init]
@@ -21,3 +22,8 @@
 	prune = true
 [diff]
 	colorMoved = zebra
+	external = difft
+[pager]
+	difftool = true
+[alias]
+	dft = difftool
