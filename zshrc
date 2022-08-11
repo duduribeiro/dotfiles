@@ -26,13 +26,20 @@ HISTSIZE=4096
 SAVEHIST=4096
 
 export ERL_AFLAGS="-kernel shell_history enabled"
-export PATH=~/.dotfiles/bin/:$PATH
+export PATH=~/.dotfiles/bin/:~/.local/bin/:$PATH
 
 bindkey '^I'   complete-word       # tab          | complete
 bindkey '^[[Z' autosuggest-accept  # shift + tab  | autosuggest
 
+# Load asdf. for mac it is the first option and the second for codespaces
+[[ ! -f /usr/local/opt/asdf/libexec/asdf.sh ]] || source /usr/local/opt/asdf/libexec/asdf.sh
+[[ ! -f ~/.asdf/asdf.sh ]] || source ~/.asdf/asdf.sh
 
 # aliases
-
 alias ls="ls -G"
 alias ll="ls -lG"
+[[ ! -f ~/.aliases ]] || source ~/.aliases
+
+export PKG_CONFIG_PATH="$(brew --prefix icu4c)/lib/pkgconfig:$(brew --prefix krb5)/lib/pkgconfig:$(brew --prefix libedit)/lib/pkgconfig:$(brew --prefix libxml2)/lib/pkgconfig:$(brew --prefix openssl)/lib/pkgconfig"
+
+export PATH="$(brew --prefix bison)/bin:$PATH"
