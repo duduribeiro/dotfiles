@@ -1,9 +1,7 @@
 #!/bin/sh
 
 {{ if eq .chezmoi.os "linux" -}}
-  {{ if eq .chezmoi.osRelease.idLike "arch" -}}
-    echo "Test is arch"
-
+  {{ if (eq (get .chezmoi.osRelease "idLike") "arch") -}}
     sudo pacman -Sy --noconfirm \
       neovim \
       tmux \
