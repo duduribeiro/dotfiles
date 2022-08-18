@@ -14,7 +14,8 @@
       fd-find \
       ripgrep \
       fzf \
-      gh
+      gh \
+      nodejs-lts
 
     # NeoVim Setup
     if ! command -v nvim  &> /dev/null; then
@@ -23,5 +24,8 @@
       sudo dpkg -i nvim-linux64.deb
       rm nvim-linux64.deb
     fi
+    {{ if .codespaces -}}
+      sudo npm install -g pnpm
+    {{ end -}}
   {{ end -}}
 {{ end -}}

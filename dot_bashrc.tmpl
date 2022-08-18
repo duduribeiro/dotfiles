@@ -1,0 +1,15 @@
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# source /Users/cadu/.config/broot/launcher/bash/br
+
+{{ if .codespaces -}}
+  # pnpm
+  export PNPM_HOME="/home/vscode/.local/share/pnpm"
+  export PATH="$PNPM_HOME:$PATH"
+  # pnpm end
+
+  NPM_PACKAGES="$HOME/.npm-packages"
+  PATH="$NPM_PACKAGES/bin:$PATH"
+  NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
+{{ end -}}
+
