@@ -1,0 +1,15 @@
+#!/bin/sh
+
+{{ if eq .chezmoi.os "linux" -}}
+  {{ if eq .chezmoi.osRelease.idLike "arch" -}}
+    echo "Test is arch"
+
+    sudo pacman -Sy --noconfirm \
+      neovim \
+      tmux \
+      fd \
+      ripgrep \
+      fzf
+  {{ end -}}
+
+{{ end -}}
