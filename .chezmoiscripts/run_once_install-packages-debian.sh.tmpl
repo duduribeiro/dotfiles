@@ -7,6 +7,8 @@
     sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg
     echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
 
+    # Nodesource key
+    curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -
 
     sudo apt update
     sudo apt install -y \
@@ -15,7 +17,8 @@
       ripgrep \
       fzf \
       gh \
-      nodejs-lts
+      nodejs \
+      npm
 
     # NeoVim Setup
     if ! command -v nvim  &> /dev/null; then
