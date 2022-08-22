@@ -1,6 +1,5 @@
 tap "homebrew/cask-fonts"
 tap "railwaycat/emacsmacport"
-tap 'wez/wezterm'
 
 # neovim
 brew 'luajit', args: ['HEAD']
@@ -34,7 +33,6 @@ brew 'htop'
 brew 'httpie'
 cask 'itsycal'
 brew 'jq'
-#cask 'rectangle'
 brew 'libpq'
 cask 'mimestream'
 cask 'muzzle'
@@ -42,9 +40,9 @@ brew 'navi'
 brew 'procs'
 cask 'proxyman'
 cask "raycast"
+cask 'rectangle'
 brew 'ripgrep'
 brew 'the_silver_searcher'
 brew 'tldr'
 brew 'tmux'
-cask 'wez/wezterm/wezterm'
 brew 'wget'
