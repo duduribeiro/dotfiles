@@ -7,5 +7,8 @@ then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
-brew bundle
+brew bundle install \
+  --file=/dev/stdin <<EOF
+{{ template "Brewfile.tmpl" . }}
+EOF
 {{ end -}}
