@@ -1,30 +1,37 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-# -e: exit on error
-# -u: exit on unset variables
-set -eu
+SCRIPT_ROOT=$(cd "$(dirname "$0")" || exit 1; pwd)
+if [ -d "$SCRIPT_ROOT/setup" ]; then
+  SCRIPT_ROOT="$(dirname "${SCRIPT_ROOT}")"
+fi
+OS=$(${SCRIPT_ROOT}/os.sh)
 
-if ! chezmoi="$(command -v chezmoi)"; then
-  bin_dir="${HOME}/.local/bin"
-  chezmoi="${bin_dir}/chezmoi"
-  echo "Installing chezmoi to '${chezmoi}'" >&2
-  if command -v curl >/dev/null; then
-    chezmoi_install_script="$(curl -fsSL https://chezmoi.io/get)"
-  elif command -v wget >/dev/null; then
-    chezmoi_install_script="$(wget -qO- https://chezmoi.io/get)"
-  else
-    echo "To install chezmoi, you must have curl or wget installed." >&2
-    exit 1
-  fi
-  sh -c "${chezmoi_install_script}" -- -b "${bin_dir}"
-  unset chezmoi_install_script bin_dir
+# This is based on keithamus dotfiles https://github.com/keithamus/dotfiles
+echo "########################################"
+echo "# Running duduribeiro dotfiles installer"
+echo "# \`$SCRIPT_ROOT/install.sh\`"
+echo "########################################"
+
+
+installScript() {
+  echo "###"
+  echo "# Installing $1"
+  echo "###"
+  sh "$SCRIPT_ROOT/$2/${3:-install}.sh"
+}
+
+if [ "$OS" = "macos" ]; then
+  "$SCRIPT_ROOT/homebrew/install.sh"
+  brew upgrade && brew upgrade
+elif [ -f "$DIR/Debfile" ] && [ "$(which apt 2>/dev/null)" ]; then
+  sudo apt update && sudo apt upgrade -y
 fi
 
-# POSIX way to get script's dir: https://stackoverflow.com/a/29834779/12156188
-script_dir="$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)"
+if [ "$OS" = "codespace" ]; then
+  installScript "codespaces" codespaces
+else
+  installScript "zsh" zsh
+fi
 
-set -- init --apply --source="${script_dir}"
-
-echo "Running 'chezmoi $*'" >&2
-# exec: replace current process with chezmoi
-exec "$chezmoi" "$@"
+installScript "Neovim" nvim
+installScript "CLI Tools" cli-tools
