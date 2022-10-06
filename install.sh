@@ -35,3 +35,4 @@ fi
 
 installScript "Neovim" nvim
 installScript "CLI Tools" cli-tools
+installScript "tmux" tmux
