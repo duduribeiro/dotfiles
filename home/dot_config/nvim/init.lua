@@ -45,3 +45,6 @@ require("nvim-treesitter.configs").setup({
     },
   },
 })
+
+-- See https://github.com/nvim-treesitter/nvim-treesitter/issues/3363 and https://github.com/tree-sitter/tree-sitter-ruby/issues/230
+vim.cmd("autocmd FileType ruby setlocal indentkeys-=.")
