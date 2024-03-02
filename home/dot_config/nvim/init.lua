@@ -10,6 +10,11 @@ vim.opt.clipboard = "unnamedplus"
 -- Enable break indent
 vim.opt.breakindent = true
 
+vim.bo.tabstop = 2
+vim.bo.shiftwidth = 2 
+vim.bo.expandtab = true
+vim.bo.softtabstop = 2
+
 -- Save undo history
 vim.opt.undofile = true
 
@@ -770,6 +775,17 @@ require("lazy").setup({
 		end,
 	},
 
+  {
+    "windwp/nvim-ts-autotag",
+    after = "nvim-treesitter",
+    dependencies = "nvim-treesitter/nvim-treesitter",
+    config = function()
+      require('nvim-ts-autotag').setup({
+      })
+    end,
+  },
+
+
 	{
 		"stevearc/aerial.nvim",
 		opts = {},
@@ -797,14 +813,16 @@ require("lazy").setup({
 	{ -- Highlight, edit, and navigate code
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
-		after = "nvim-treesitter-endwise",
+		after = { 
+      "nvim-treesitter-endwise",
+    },
 		config = function()
 			-- [[ Configure Treesitter ]] See `:help nvim-treesitter`
 
 			---@diagnostic disable-next-line: missing-fields
 			require("nvim-treesitter.configs").setup({
 				endwise = { enable = true },
-				ensure_installed = { "bash", "c", "html", "lua", "markdown", "vim", "vimdoc", "ruby", "javascript" },
+				ensure_installed = { "bash", "c", "html", "lua", "markdown", "vim", "vimdoc", "ruby", "javascript", "embedded_template" },
 				-- Autoinstall languages that are not installed
 				auto_install = true,
 				highlight = { enable = true },
