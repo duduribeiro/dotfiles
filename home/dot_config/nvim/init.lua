@@ -208,6 +208,8 @@ require("lazy").setup({
 				["<leader>r"] = { name = "[R]ename", _ = "which_key_ignore" },
 				["<leader>s"] = { name = "[S]earch", _ = "which_key_ignore" },
 				["<leader>w"] = { name = "[W]orkspace", _ = "which_key_ignore" },
+				["[b"] = { "<cmd>bp<CR>", "previous buffer" },
+				["]b"] = { "<cmd>bn<CR>", "next buffer" },
 			})
 		end,
 	},
@@ -551,6 +553,8 @@ require("lazy").setup({
 				},
 			})
 
+			require("mini.tabline").setup({})
+
 			-- Add/delete/replace surroundings (brackets, quotes, etc.)
 			--
 			-- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
@@ -814,12 +818,6 @@ require("lazy").setup({
 						goto_previous_end = {
 							["[M"] = "@function.outer",
 							["[]"] = "@class.outer",
-						},
-						goto_next = {
-							["]b"] = "@block.inner",
-						},
-						goto_previous = {
-							["[b"] = "@block.inner",
 						},
 					},
 				},
