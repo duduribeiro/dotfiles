@@ -212,7 +212,13 @@ require("lazy").setup({
 				["]b"] = { "<cmd>bn<CR>", "next buffer" },
 				["<leader>b"] = {
 					name = "Buffers",
-					["d"] = {
+					D = {
+						function()
+							require("mini.bufremove").delete(0, true)
+						end,
+						"Delete buffer (Force)",
+					},
+					d = {
 						function()
 							local bd = require("mini.bufremove").delete
 							if vim.bo.modified then
