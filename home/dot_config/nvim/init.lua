@@ -11,7 +11,7 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.breakindent = true
 
 vim.bo.tabstop = 2
-vim.bo.shiftwidth = 2 
+vim.bo.shiftwidth = 2
 vim.bo.expandtab = true
 vim.bo.softtabstop = 2
 
@@ -346,14 +346,14 @@ require("lazy").setup({
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
-      {
-          "SmiteshP/nvim-navbuddy",
-          dependencies = {
-              "SmiteshP/nvim-navic",
-              "MunifTanjim/nui.nvim"
-          },
-          opts = { lsp = { auto_attach = true } }
-      },
+			{
+				"SmiteshP/nvim-navbuddy",
+				dependencies = {
+					"SmiteshP/nvim-navic",
+					"MunifTanjim/nui.nvim",
+				},
+				opts = { lsp = { auto_attach = true } },
+			},
 		},
 		config = function()
 			--  This function gets run when an LSP attaches to a particular buffer.
@@ -530,8 +530,8 @@ require("lazy").setup({
 		end,
 	},
 
-  -- Highlight todo, notes, etc in comments
-  { 'folke/todo-comments.nvim', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
+	-- Highlight todo, notes, etc in comments
+	{ "folke/todo-comments.nvim", dependencies = { "nvim-lua/plenary.nvim" }, opts = { signs = false } },
 
 	{ -- Collection of various small independent plugins/modules
 		"echasnovski/mini.nvim",
@@ -543,6 +543,13 @@ require("lazy").setup({
 			--  - yinq - [Y]ank [I]nside [N]ext [']quote
 			--  - ci'  - [C]hange [I]nside [']quote
 			require("mini.ai").setup({ n_lines = 500 })
+
+			require("mini.indentscope").setup({
+				symbol = "│",
+				draw = {
+					delay = 1,
+				},
+			})
 
 			-- Add/delete/replace surroundings (brackets, quotes, etc.)
 			--
@@ -563,6 +570,35 @@ require("lazy").setup({
 			--  Check out: https://github.com/echasnovski/mini.nvim
 		end,
 	},
+
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		opts = {
+			indent = {
+				char = "│",
+				tab_char = "│",
+			},
+			scope = { enabled = false },
+			exclude = {
+				filetypes = {
+					"help",
+					"alpha",
+					"dashboard",
+					"neo-tree",
+					"Trouble",
+					"trouble",
+					"lazy",
+					"mason",
+					"notify",
+					"toggleterm",
+					"lazyterm",
+				},
+			},
+		},
+		main = "ibl",
+	},
+
+	-- "github/copilot.vim",
 
 	{ -- Autocompletion
 		"hrsh7th/nvim-cmp",
@@ -597,7 +633,9 @@ require("lazy").setup({
 		},
 		config = function()
 			-- See `:help cmp`
+			vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
 			local cmp = require("cmp")
+			local defaults = require("cmp.config.default")()
 			local luasnip = require("luasnip")
 			luasnip.config.setup({})
 
@@ -619,10 +657,17 @@ require("lazy").setup({
 					-- Select the [p]revious item
 					["<C-p>"] = cmp.mapping.select_prev_item(),
 
-					-- Accept ([y]es) the completion.
+					["<C-b>"] = cmp.mapping.scroll_docs(-4),
+					["<C-f>"] = cmp.mapping.scroll_docs(4),
+					["<C-e>"] = cmp.mapping.abort(),
+
 					--  This will auto-import if your LSP supports it.
 					--  This will expand snippets if the LSP sent a snippet.
-					["<C-y>"] = cmp.mapping.confirm({ select = true }),
+					["<CR>"] = cmp.mapping.confirm({ select = true }),
+					["<S-CR>"] = cmp.mapping.confirm({
+						behavior = cmp.ConfirmBehavior.Replace,
+						select = true,
+					}),
 
 					-- Manually trigger a completion from nvim-cmp.
 					--  Generally you don't need this, because nvim-cmp will display
@@ -651,8 +696,15 @@ require("lazy").setup({
 				sources = {
 					{ name = "nvim_lsp" },
 					{ name = "luasnip" },
+					{ name = "buffer" },
 					{ name = "path" },
 				},
+				experimental = {
+					ghost_text = {
+						hl_group = "CmpGhostText",
+					},
+				},
+				sorting = defaults.sorting,
 			})
 		end,
 	},
@@ -775,16 +827,14 @@ require("lazy").setup({
 		end,
 	},
 
-  {
-    "windwp/nvim-ts-autotag",
-    after = "nvim-treesitter",
-    dependencies = "nvim-treesitter/nvim-treesitter",
-    config = function()
-      require('nvim-ts-autotag').setup({
-      })
-    end,
-  },
-
+	{
+		"windwp/nvim-ts-autotag",
+		after = "nvim-treesitter",
+		dependencies = "nvim-treesitter/nvim-treesitter",
+		config = function()
+			require("nvim-ts-autotag").setup({})
+		end,
+	},
 
 	{
 		"stevearc/aerial.nvim",
@@ -799,30 +849,130 @@ require("lazy").setup({
 		end,
 	},
 
-  {
-    "stevearc/oil.nvim",
-    config = function()
-      require("oil").setup({
-        keymaps = {
-          ["<leader>e"] = "actions.close"
-        }
-      })
-    end,
-  },
+	{
+		"stevearc/oil.nvim",
+		config = function()
+			require("oil").setup({
+				keymaps = {
+					["<leader>e"] = "actions.close",
+				},
+			})
+		end,
+	},
+
+	{
+		"nvim-neo-tree/neo-tree.nvim",
+		branch = "v3.x",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-tree/nvim-web-devicons",
+		},
+		cmd = "Neotree",
+		keys = {
+			{
+				"<leader>fe",
+				function()
+					require("neo-tree.command").execute({ toggle = true })
+				end,
+				desc = "Explorer NeoTree (root dir)",
+			},
+			{
+				"<leader>fE",
+				function()
+					require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd() })
+				end,
+				desc = "Explorer NeoTree (cwd)",
+			},
+			{
+				"<leader>ge",
+				function()
+					require("neo-tree.command").execute({ source = "git_status", toggle = true })
+				end,
+				desc = "Git explorer",
+			},
+			{
+				"<leader>be",
+				function()
+					require("neo-tree.command").execute({ source = "buffers", toggle = true })
+				end,
+				desc = "Buffer explorer",
+			},
+		},
+		deactivate = function()
+			vim.cmd([[Neotree close]])
+		end,
+		init = function()
+			if vim.fn.argc(-1) == 1 then
+				local stat = vim.loop.fs_stat(vim.fn.argv(0))
+				if stat and stat.type == "directory" then
+					require("neo-tree")
+				end
+			end
+		end,
+		opts = {
+			sources = { "filesystem", "buffers", "git_status", "document_symbols" },
+			open_files_do_not_replace_types = { "terminal", "Trouble", "trouble", "qf", "Outline" },
+			filesystem = {
+				bind_to_cwd = false,
+				follow_current_file = { enabled = true },
+				use_libuv_file_watcher = true,
+			},
+			window = {
+				mappings = {
+					["<space>"] = "none",
+					["Y"] = function(state)
+						local node = state.tree:get_node()
+						local path = node:get_id()
+						vim.fn.setreg("+", path, "c")
+					end,
+				},
+			},
+			default_component_configs = {
+				indent = {
+					with_expanders = true, -- if nil and file nesting is enabled, will enable expanders
+					expander_collapsed = "",
+					expander_expanded = "",
+					expander_highlight = "NeoTreeExpander",
+				},
+			},
+		},
+		config = function(_, opts)
+			require("neo-tree").setup(opts)
+			vim.api.nvim_create_autocmd("TermClose", {
+				pattern = "*lazygit",
+				callback = function()
+					if package.loaded["neo-tree.sources.git_status"] then
+						require("neo-tree.sources.git_status").refresh()
+					end
+				end,
+			})
+		end,
+	},
 
 	{ -- Highlight, edit, and navigate code
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
-		after = { 
-      "nvim-treesitter-endwise",
-    },
+		after = {
+			"nvim-treesitter-endwise",
+		},
 		config = function()
 			-- [[ Configure Treesitter ]] See `:help nvim-treesitter`
 
 			---@diagnostic disable-next-line: missing-fields
 			require("nvim-treesitter.configs").setup({
 				endwise = { enable = true },
-				ensure_installed = { "bash", "c", "html", "lua", "markdown", "vim", "vimdoc", "ruby", "javascript", "embedded_template" },
+				ensure_installed = {
+					"bash",
+					"c",
+					"html",
+					"lua",
+					"markdown",
+					"vim",
+					"vimdoc",
+					"ruby",
+					"javascript",
+					"embedded_template",
+				},
 				-- Autoinstall languages that are not installed
 				auto_install = true,
 				highlight = { enable = true },
