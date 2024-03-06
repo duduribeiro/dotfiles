@@ -79,6 +79,10 @@ vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right win
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
+vim.keymap.set("n", "<leader>cr", function()
+	return ":IncRename " .. vim.fn.expand("<cword>")
+end, { expr = true, desc = "Rename" })
+
 -- [[ Basic Autocommands ]]
 --  See :help lua-guide-autocommands
 
@@ -1058,6 +1062,12 @@ require("lazy").setup({
     keys = {
       { "<leader>sr", function() require("spectre").open() end, desc = "Replace in files (Spectre)" },
     },
+	},
+	{
+		"smjonas/inc-rename.nvim",
+		config = function()
+			require("inc_rename").setup()
+		end,
 	},
 })
 
