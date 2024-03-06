@@ -341,7 +341,7 @@ require("lazy").setup({
 			vim.keymap.set("n", "<leader>sw", builtin.grep_string, { desc = "[S]earch current [W]ord" })
 			vim.keymap.set("n", "<leader>sg", builtin.live_grep, { desc = "[S]earch by [G]rep" })
 			vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
-			vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
+			-- vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
 			vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
 			vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
 
@@ -1046,6 +1046,18 @@ require("lazy").setup({
 			--    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
 			--    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 		end,
+	},
+
+	-- Search and replace util
+	{
+		"nvim-pack/nvim-spectre",
+		build = false,
+		cmd = "Spectre",
+		opts = { open_cmd = "noswapfile vnew" },
+    -- stylua: ignore
+    keys = {
+      { "<leader>sr", function() require("spectre").open() end, desc = "Replace in files (Spectre)" },
+    },
 	},
 })
 
