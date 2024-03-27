@@ -315,6 +315,7 @@ require("lazy").setup({
 
 			-- [[ Configure Telescope ]]
 			-- See `:help telescope` and `:help telescope.setup()`
+			--
 			require("telescope").setup({
 				-- You can put your default mappings / updates / etc. in here
 				--  All the info you're looking for is in `:help telescope.setup()`
@@ -550,6 +551,8 @@ require("lazy").setup({
 				handlers = {
 					function(server_name)
 						local server = servers[server_name] or {}
+						local lsp_capabilities =
+							vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
 						require("lspconfig")[server_name].setup({
 							cmd = server.cmd,
 							settings = server.settings,
@@ -557,7 +560,13 @@ require("lazy").setup({
 							-- This handles overriding only values explicitly passed
 							-- by the server configuration above. Useful when disabling
 							-- certain features of an LSP (for example, turning off formatting for tsserver)
-							capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {}),
+							capabilities = lsp_capabilities,
+
+							-- disable semanticTokensProvider if LSP is getting weird color on colorscheme
+							--
+							-- on_init = function(client, _)
+							-- 	client.server_capabilities.semanticTokensProvider = nil -- turn off semantic tokens
+							-- end,
 						})
 					end,
 				},
@@ -669,7 +678,7 @@ require("lazy").setup({
 			-- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
 			-- - sd'   - [S]urround [D]elete [']quotes
 			-- - sr)'  - [S]urround [R]eplace [)] [']
-			require("mini.surround").setup()
+			-- require("mini.surround").setup()
 
 			-- Simple and easy statusline.
 			--  You could remove this setup call if you don't like it,
@@ -823,11 +832,30 @@ require("lazy").setup({
 	},
 
 	{
-		"navarasu/onedark.nvim",
+		"catppuccin/nvim",
+		name = "catppuccin",
 		lazy = false,
 		priority = 1000,
 		config = function()
-			vim.cmd.colorscheme("onedark")
+			-- catppuccin catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
+
+			-- vim.cmd.colorscheme("catppuccin-frappe")
+			require("catppuccin").setup({
+				background = {
+					light = "latte",
+					dark = "mocha", -- frappe
+				},
+				transparent_background = true,
+				custom_highlights = function(c)
+					local u = require("catppuccin.utils.colors")
+					return {
+						["@module"] = { fg = c.yellow },
+						-- ["@string.special.symbol.ruby"] = { fg = c.red },
+					}
+				end,
+			})
+			vim.o.termguicolors = true
+			vim.cmd([[colorscheme catppuccin]])
 		end,
 	},
 
@@ -840,6 +868,7 @@ require("lazy").setup({
 		config = function()
 			require("treesitter-context").setup({
 				enable = true,
+				max_lines = 10,
 			})
 		end,
 	},
@@ -1112,6 +1141,45 @@ require("lazy").setup({
 			require("inc_rename").setup()
 		end,
 	},
+
+	{ "tpope/vim-surround" },
+
+	{
+		"vim-test/vim-test",
+		dependencies = {
+			"preservim/vimux",
+		},
+		config = function()
+			vim.keymap.set("n", "<Leader>t", ":TestFile<CR>")
+			vim.keymap.set("n", "<Leader>s", ":TestNearest<CR>")
+			vim.keymap.set("n", "<Leader>l", ":TestLast<CR>")
+			vim.keymap.set("n", "<Leader>a", ":TestSuite<CR>")
+			vim.keymap.set("n", "<Leader>gt", ":TestVisit<CR>")
+
+			vim.cmd("let test#strategy = 'vimux'")
+		end,
+	},
 })
+
+vim.cmd([[
+function! RailsVersion()
+  if filereadable('Gemfile.lock')
+    for line in readfile('Gemfile.lock')
+      let version_string = matchstr(line, '\v^ *railties \(\zs\d+\.\d+\..+\ze\)')
+      if version_string
+        break
+      endif
+    endfor
+
+    if version_string
+      let rails_version = matchlist(version_string, '\v(\d+)\.(\d+)\.(\d+)%(\.(\d+))?')[1:-1]
+      call filter(rails_version, '!empty(v:val)')
+      call map(rails_version, 'str2nr(v:val)')
+
+      return rails_version
+    end
+  endif
+endfunction
+]])
 
 -- vim: ts=2 sts=2 sw=2 et
