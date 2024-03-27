@@ -21,6 +21,3 @@ fi
 script_dir="$(git rev-parse --show-toplevel)"
 # exec: replace current process with chezmoi init
 exec "$chezmoi" init --apply "--source=$script_dir"
-
-# Install tpm
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
