@@ -41,7 +41,7 @@ vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 vim.opt.inccommand = "split"
 
 vim.cmd([[ set noswapfile ]])
-vim.cmd([[ set termguicolors ]])
+vim.o.termguicolors = true
 
 -- Show which line your cursor is on
 vim.opt.cursorline = true
@@ -54,3 +54,17 @@ vim.opt.hlsearch = true
 
 -- Remove annoying autoident when pressing `.` after a method
 vim.cmd([[autocmd FileType ruby setlocal indentkeys-=.]])
+
+-- [[ Basic Autocommands ]]
+--  See :help lua-guide-autocommands
+
+-- Highlight when yanking (copying) text
+--  Try it with `yap` in normal mode
+--  See `:help vim.highlight.on_yank()`
+vim.api.nvim_create_autocmd("TextYankPost", {
+  desc = "Highlight when yanking (copying) text",
+  group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+})
