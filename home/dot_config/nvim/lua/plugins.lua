@@ -11,7 +11,7 @@
 -- [[ Plugin Specs list ]]
 require("lazy").setup({
   -- colorschemes
-  { "catppuccin/nvim", lazy = false, priority = 1000 },
+  { "catppuccin/nvim", lazy = false, priority = 1000, name = "catppuccin" },
   { "projekt0n/github-nvim-theme", lazy = false, priority = 1000 },
 
   --
@@ -30,6 +30,7 @@ require("lazy").setup({
   { "vim-test/vim-test", dependencies = { "preservim/vimux" } }, -- execute tests directly on vim (vimux is used as strategy to run on a tmux pane
   { "echasnovski/mini.nvim" }, -- Collection of various small independent plugins/modules
   { "lukas-reineke/indent-blankline.nvim", main = "ibl" }, -- adds indentation guides to Neovim. It uses Neovim's virtual text feature
+  "christoomey/vim-tmux-navigator", -- the plugin will allow you to navigate seamlessly between vim and tmux splits using a consistent set of hotkeys
 
   { -- LSP renaming
     "smjonas/inc-rename.nvim",
