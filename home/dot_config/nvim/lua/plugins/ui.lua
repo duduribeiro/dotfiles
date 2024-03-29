@@ -1,4 +1,28 @@
 return {
+  {
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function()
+      require('lualine').setup({
+        winbar = {
+          lualine_c = {
+            {
+              "navic",
+              color_correction = nil,
+              navic_opts = nil
+            }
+          }
+        },
+        options = {
+          section_separators = '', component_separators = '',
+          theme = "auto"
+          -- ... the rest of your lualine config
+        }
+      })
+    end,
+  },
+
+
   -- removing buffer line temporarily to see if I can live without it and rely only on Telescope buffer search
   -- buffer line
   -- {
