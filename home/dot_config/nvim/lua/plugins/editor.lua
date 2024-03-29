@@ -104,32 +104,32 @@ return {
   { "folke/todo-comments.nvim", dependencies = { "nvim-lua/plenary.nvim" }, opts = { signs = false } }, -- Highlight todo, notes, etc in comments
 
   -- adds indentation guides to Neovim. It uses Neovim's virtual text feature
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    main = "ibl",
-    config = function()
-      require("ibl").setup({
-        indent = {
-          char = "│",
-          tab_char = "│",
-        },
-        scope = { enabled = false },
-        exclude = {
-          filetypes = {
-            "help",
-            "alpha",
-            "dashboard",
-            "neo-tree",
-            "Trouble",
-            "trouble",
-            "lazy",
-            "mason",
-            "notify",
-            "toggleterm",
-            "lazyterm",
-          },
-        },
-      })
-    end,
-  },
+  -- {
+  --   "lukas-reineke/indent-blankline.nvim",
+  --   main = "ibl",
+  --   config = function()
+  --     require("ibl").setup({
+  --       indent = {
+  --         char = "│",
+  --         tab_char = "│",
+  --       },
+  --       scope = { enabled = false },
+  --       exclude = {
+  --         filetypes = {
+  --           "help",
+  --           "alpha",
+  --           "dashboard",
+  --           "neo-tree",
+  --           "Trouble",
+  --           "trouble",
+  --           "lazy",
+  --           "mason",
+  --           "notify",
+  --           "toggleterm",
+  --           "lazyterm",
+  --         },
+  --       },
+  --     })
+  --   end,
+  -- },
 }
