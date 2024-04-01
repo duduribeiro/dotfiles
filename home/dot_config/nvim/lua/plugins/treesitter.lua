@@ -23,6 +23,7 @@ return {
           "ruby",
           "javascript",
           "embedded_template",
+          "sql",
         },
         -- Autoinstall languages that are not installed
         auto_install = true,
