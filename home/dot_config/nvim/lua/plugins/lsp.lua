@@ -18,6 +18,10 @@ return {
     lazy = false,
     config = function()
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
+      capabilities.textDocument.foldingRange = {
+        dynamicRegistration = false,
+        lineFoldingOnly = true,
+      }
       local navic = require("nvim-navic")
       local on_attach = function(client, bufnr)
         if client.server_capabilities.documentSymbolProvider then
