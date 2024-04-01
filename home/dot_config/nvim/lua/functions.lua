@@ -18,3 +18,13 @@ function! RailsVersion()
   endif
 endfunction
 ]])
+
+function toggleColorscheme()
+  if vim.g.colors_name == "github_light" then
+    vim.cmd([[set background=dark]])
+    vim.cmd([[colorscheme catppuccin]])
+  else
+    vim.cmd([[set background=light]])
+    vim.cmd([[colorscheme github_light]])
+  end
+end
