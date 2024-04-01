@@ -3,7 +3,13 @@ return {
   "tpope/vim-rails", -- Ruby on Rails power tools
   "tpope/vim-endwise", -- Wisely add "end" in ruby, endfunction/endif/more in vim script, etc
   "tpope/vim-surround", -- Surround text with pairs of quotes, brackets, etc
-  "numToStr/Comment.nvim",
+  {
+    "numToStr/Comment.nvim",
+    lazy = false,
+    config = function()
+      require("Comment").setup()
+    end,
+  },
 
   -- folding
   {
