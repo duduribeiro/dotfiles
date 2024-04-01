@@ -17,7 +17,7 @@ return {
     "neovim/nvim-lspconfig",
     lazy = false,
     config = function()
-      local capabilities = require('cmp_nvim_lsp').default_capabilities()
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
       local navic = require("nvim-navic")
       local on_attach = function(client, bufnr)
         if client.server_capabilities.documentSymbolProvider then
@@ -57,7 +57,7 @@ return {
           "exec",
           "ruby-lsp",
         },
-      });
+      })
 
       --lspconfig.ruby_ls.setup({
       --  cmd = { "ruby-lsp" },
@@ -91,10 +91,9 @@ return {
       })
 
       vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
-
     end,
     dependencies = {
       "neovim/nvim-lspconfig",
-    }
-  }
+    },
+  },
 }
