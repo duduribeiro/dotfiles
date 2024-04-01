@@ -1,5 +1,6 @@
 return {
   -- colorschemes
+  { "NLKNguyen/papercolor-theme", lazy = false, priority = 1000 },
   {
     "catppuccin/nvim",
     lazy = false,
@@ -21,8 +22,28 @@ return {
           }
         end,
       })
-
-    end
+    end,
   },
-  { "projekt0n/github-nvim-theme", lazy = false, priority = 1000 },
+  {
+    "projekt0n/github-nvim-theme",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      local groups = {
+        github_light = {
+          -- As with specs and palettes, a specific style's value will be used over the `all`'s value.
+          Delimiter = { link = "Comment" },
+        },
+      }
+      require("github-theme").setup({ groups = groups })
+    end,
+  },
+  {
+    "navarasu/onedark.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("onedark")
+    end,
+  },
 }
