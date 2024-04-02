@@ -1,27 +1,36 @@
 return {
   {
-    'nvim-lualine/lualine.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    "nvim-lualine/lualine.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
-      require('lualine').setup({
+      require("lualine").setup({
+        sections = {
+          lualine_c = {
+            {
+              "filename",
+              file_status = true,
+              path = 1,
+            },
+          },
+        },
         winbar = {
           lualine_c = {
             {
               "navic",
               color_correction = nil,
-              navic_opts = nil
-            }
-          }
+              navic_opts = nil,
+            },
+          },
         },
         options = {
-          section_separators = '', component_separators = '',
-          theme = "auto"
+          section_separators = "",
+          component_separators = "",
+          theme = "auto",
           -- ... the rest of your lualine config
-        }
+        },
       })
     end,
   },
-
 
   -- removing buffer line temporarily to see if I can live without it and rely only on Telescope buffer search
   -- buffer line
