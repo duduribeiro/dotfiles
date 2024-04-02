@@ -1,0 +1,7 @@
+{
+  "wtf": {
+    "prefix": "wtf",
+    "body": "puts \"$0\"",
+    "description": "add a puts statement"
+  }
+}
