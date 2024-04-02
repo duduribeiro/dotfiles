@@ -2,7 +2,7 @@
 vim.keymap.set("n", "<leader>e", "<CMD>Oil<CR>", { desc = "File navigation [e]xplorer" })
 
 -- vim-test
-vim.keymap.set("n", "<Leader>tf", ":TestFile<CR>", { desc = "Run [T]est for [f]ile" })
+vim.keymap.set("n", "<Leader>tt", ":TestFile<CR>", { desc = "Run [T]est for [f]ile" })
 vim.keymap.set("n", "<Leader>tn", ":TestNearest<CR>")
 vim.keymap.set("n", "<Leader>tl", ":TestLast<CR>")
 vim.keymap.set("n", "<Leader>ta", ":TestSuite<CR>")
